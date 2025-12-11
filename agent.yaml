@@ -1,0 +1,33 @@
+version: v1
+kind: ServiceTemplate
+metadata:
+  name: recruit
+  description: MeshAgent service that for recruiting.
+  repo: https://github.com/dmcqueen/meshagent-recruit
+  annotations:
+    meshagent.service.id: meshagent.recruit
+agents:
+  - name: recruit
+    description: Handles chat conversations while dispatching outbound email on demand.
+    annotations:
+      meshagent.agent.type: ChatBot
+variables:
+  - name: EMAIL_ADDRESS
+    description: Mailbox address used as the service sender.
+ports:
+  - num: "*"
+    type: http
+    endpoints:
+      - path: "/chat"
+        meshagent:
+          identity: recruit
+      - path: "/mail"
+        meshagent:
+          identity: recruit
+    liveness: "/"
+container:
+  environment:
+    - name: EMAIL_ADDRESS
+      value: ${EMAIL_ADDRESS}
+  image: us-central1-docker.pkg.dev/meshagent-life/meshagent-public/recruit:latest
+  command: "python /app/main.py"

@@ -10,7 +10,8 @@ agents:
   - name: recruit
     description: Receives job post and resume submissions from widgets and manages acknowledgement email.
     annotations:
-      meshagent.agent.type: ChatBot
+      meshagent.agent.type: Mailbot
+      meshagent.agent.widget: https://raw.githubusercontent.com/dmcqueen/meshagent-recruit/refs/heads/main/submit-resume.json
 variables:
   - name: EMAIL_ADDRESS
     description: Mailbox address used as the service sender for acknowledgement email (defaults to dave@mail.meshagent.life if unset).

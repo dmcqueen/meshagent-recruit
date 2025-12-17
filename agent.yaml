@@ -40,7 +40,7 @@ container:
     - name: MESHAGENT_IDENTITY
       value: recruit
     - name: MESHAGENT_MAIL_DOMAIN
-      value: mail.meshagent.life
+      value: ${MESHAGENT_MAIL_DOMAIN}
     - name: EMAIL_ADDRESS
       value: ${EMAIL_ADDRESS}
   image: us-central1-docker.pkg.dev/meshagent-life/meshagent-public/recruit:latest

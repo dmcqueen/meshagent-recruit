@@ -15,8 +15,6 @@ agents:
 variables:
   - name: EMAIL_ADDRESS
     description: Mailbox address used as the service sender for acknowledgement email.
-  - name: MESHAGENT_MAIL_DOMAIN
-    description: Mail domain used for sending acknowledgement emails.
 ports:
   - num: "*"
     type: http
@@ -41,8 +39,6 @@ container:
   environment:
     - name: MESHAGENT_IDENTITY
       value: recruit
-    - name: MESHAGENT_MAIL_DOMAIN
-      value: ${MESHAGENT_MAIL_DOMAIN}
     - name: EMAIL_ADDRESS
       value: ${EMAIL_ADDRESS}
   image: us-central1-docker.pkg.dev/meshagent-life/meshagent-public/recruit:latest

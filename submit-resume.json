@@ -96,6 +96,7 @@
                                        "text": {
                                           "text": "Submit",
                                           "name": "text0",
+                                          "color": "#FFFFFF",
                                           "script": ""
                                        }
                                     }

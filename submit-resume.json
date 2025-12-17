@@ -1,5 +1,5 @@
 {
-    "initial_json": {
+"initial_json": {
    "widget": {
       "children": [
          {
@@ -32,16 +32,71 @@
                                  "topRightRadius": 100,
                                  "bottomRightRadius": 100,
                                  "bottomLeftRadius": 100,
-                                 "backgroundColor": "#4477DD",
                                  "name": "submit",
                                  "marginTop": 20,
+                                 "backgroundColor": "#4477DD",
                                  "children": [
                                     {
                                        "text": {
                                           "text": "Submit",
-                                          "color": "#FFFFFFFF",
                                           "name": "text",
-                                          "script": "local agents = require('agents')\n\nlocal function show_toast(title, description)\n  agents.invokeTool(\"ui\", \"show_toast\", { title = title, description = description }, function() end)\nend\n\nfunction widget:onPressed()\n  local target = self or widget\n  if target == nil then\n    print(\"[submit-resume.lua] widget reference missing; cannot handle onPressed\")\n    return\n  end\n  target:setSpinner(true)\n\n  local emailWidget = getWidget(\"email\")\n  local resumeWidget = getWidget(\"resume\")\n\n  if emailWidget == nil or resumeWidget == nil then\n    target:setSpinner(false)\n    show_toast(\"Missing inputs\", \"One or more input fields are not available.\")\n    return\n  end\n\n  local emailValue = emailWidget:getValue()\n  local resumeValue = resumeWidget:getValue()\n\n  local isEmpty = function(value)\n    return value == nil or value == \"\"\n  end\n\n  if isEmpty(emailValue) or isEmpty(resumeValue) then\n    target:setSpinner(false)\n    show_toast(\"Missing inputs\", \"Please enter your email and resume.\")\n    return\n  end\n\n  local payload = {\n    email = \"\" .. emailValue,\n    resume = \"\" .. resumeValue,\n  }\n\n  agents.invokeTool(\n    \"resume_submission\",\n    \"submit_resume\",\n    payload,\n    function(error, response)\n      widget:onSubmitComplete(error, response)\n    end\n  )\nend\n\nfunction widget:onSubmitComplete(error, response)\n  local target = self or widget\n  if target == nil then\n    print(\"[submit-resume.lua] widget reference missing; cannot handle onSubmitComplete\")\n    return\n  end\n\n  target:setSpinner(false)\n\n  if error then\n    show_toast(\"Submission failed\", tostring(error))\n    return\n  end\n\n  local email = \"\"\n  if response ~= nil and response.email ~= nil then\n    email = tostring(response.email)\n  end\n  show_toast(\"Resume submitted\", \"Logged resume for \" .. email)\nend\n"
+                                          "script": "local agents = require('agents')\n\nlocal function show_toast(title, description)\n  agents.invokeTool(\"ui\", \"show_toast\", { title = title, description = description }, function() end)\nend\n\nfunction widget:onPressed()\n  local target = self or widget\n  if target == nil then\n    print(\"[submit-resume.lua] widget reference missing; cannot handle onPressed\")\n    return\n  end\n  target:setSpinner(true)\n\n  local emailWidget = getWidget(\"email\")\n  local resumeWidget = getWidget(\"resume\")\n\n  if emailWidget == nil or resumeWidget == nil then\n    target:setSpinner(false)\n    show_toast(\"Missing inputs\", \"One or more input fields are not available.\")\n    return\n  end\n\n  local emailValue = emailWidget:getValue()\n  local resumeValue = resumeWidget:getValue()\n\n  local isEmpty = function(value)\n    return value == nil or value == \"\"\n  end\n\n  if isEmpty(emailValue) or isEmpty(resumeValue) then\n    target:setSpinner(false)\n    show_toast(\"Missing inputs\", \"Please enter your email and resume.\")\n    return\n  end\n\n  local payload = {\n    email = \"\" .. emailValue,\n    resume = \"\" .. resumeValue,\n  }\n\n  agents.invokeTool(\n    \"resume_submission\",\n    \"submit_resume\",\n    payload,\n    function(error, response)\n      widget:onSubmitComplete(error, response)\n    end\n  )\nend\n\nfunction widget:onSubmitComplete(error, response)\n  local target = self or widget\n  if target == nil then\n    print(\"[submit-resume.lua] widget reference missing; cannot handle onSubmitComplete\")\n    return\n  end\n\n  target:setSpinner(false)\n\n  if error then\n    show_toast(\"Submission failed\", tostring(error))\n    return\n  end\n\n  local email = \"\"\n  if response ~= nil and response.email ~= nil then\n    email = tostring(response.email)\n  end\n  show_toast(\"Resume submitted\", \"Logged resume for \" .. email)\nend\n",
+                                          "color": "#FFFFFF"
+                                       }
+                                    }
+                                 ]
+                              }
+                           },
+                           {
+                              "input": {
+                                 "name": "manager-email",
+                                 "marginTop": 20,
+                                 "width": 400,
+                                 "placeholder": "manager@email.com"
+                              }
+                           },
+                           {
+                              "input": {
+                                 "name": "manager-name",
+                                 "width": 400,
+                                 "marginTop": 20,
+                                 "placeholder": "Manager Name"
+                              }
+                           },
+                           {
+                              "input": {
+                                 "name": "job-title",
+                                 "placeholder": "Job Title",
+                                 "marginTop": 20,
+                                 "width": 400
+                              }
+                           },
+                           {
+                              "textarea": {
+                                 "name": "job-post",
+                                 "marginTop": 20,
+                                 "width": 400,
+                                 "height": 400,
+                                 "placeholder": "Job Post Here"
+                              }
+                           },
+                           {
+                              "button": {
+                                 "name": "submit-post",
+                                 "backgroundColor": "#4477DD",
+                                 "topLeftRadius": 100,
+                                 "topRightRadius": 100,
+                                 "bottomRightRadius": 100,
+                                 "bottomLeftRadius": 100,
+                                 "width": 100,
+                                 "marginTop": 20,
+                                 "script": "local agents = require('agents')\n\nlocal function show_toast(title, description)\n  agents.invokeTool(\"ui\", \"show_toast\", { title = title, description = description }, function() end)\nend\n\nfunction widget:onPressed()\n  local target = self or widget\n  if target == nil then\n    print(\"[submit.lua] widget reference missing; cannot handle onPressed\")\n    return\n  end\n  target:setSpinner(true)\n\n  local emailWidget = getWidget(\"manager-email\")\n  local jobPostWidget = getWidget(\"job-post\")\n  local jobTitleWidget = getWidget(\"job-title\")\n  local managerNameWidget = getWidget(\"manager-name\")\n\n  if emailWidget == nil or jobPostWidget == nil or jobTitleWidget == nil or managerNameWidget == nil then\n    target:setSpinner(false)\n    show_toast(\"Missing inputs\", \"One or more input fields are not available.\")\n    return\n  end\n\n  local emailValue = emailWidget:getValue()\n  local jobPostValue = jobPostWidget:getValue()\n  local jobTitleValue = jobTitleWidget:getValue()\n  local managerNameValue = managerNameWidget:getValue()\n\n  local isEmpty = function(value)\n    return value == nil or value == \"\"\n  end\n\n  if isEmpty(emailValue) or isEmpty(jobPostValue) or isEmpty(jobTitleValue) or isEmpty(managerNameValue) then\n    target:setSpinner(false)\n    show_toast(\"Missing inputs\", \"Please enter job title, manager name, email, and the job post details.\")\n    return\n  end\n\n  local emailStr = \"\" .. emailValue\n  local jobPostStr = \"\" .. jobPostValue\n  local jobTitleStr = \"\" .. jobTitleValue\n  local managerNameStr = \"\" .. managerNameValue\n\n  local payload = {\n    manager_email = emailStr,\n    job_post = jobPostStr,\n    job_title = jobTitleStr,\n    manager_name = managerNameStr,\n  }\n\n  agents.invokeTool(\n    \"job_post_submission\",\n    \"submit_job_post\",\n    payload,\n    function(error, response)\n      widget:onSubmitComplete(error, response)\n    end\n  )\nend\n\nfunction widget:onSubmitComplete(error, response)\n  local target = self or widget\n  if target == nil then\n    print(\"[submit.lua] widget reference missing; cannot handle onSubmitComplete\")\n    return\n  end\n\n  target:setSpinner(false)\n\n  if error then\n    show_toast(\"Save failed\", tostring(error))\n    return\n  end\n\n  local email = \"\"\n  if response ~= nil and response.email ~= nil then\n    email = tostring(response.email)\n  end\n  show_toast(\"Job post saved\", \"Logged job post for \" .. email)\nend\n",
+                                 "children": [
+                                    {
+                                       "text": {
+                                          "text": "Submit",
+                                          "name": "text0",
+                                          "script": ""
                                        }
                                     }
                                  ]

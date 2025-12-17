@@ -32,6 +32,7 @@
                                  "topRightRadius": 100,
                                  "bottomRightRadius": 100,
                                  "bottomLeftRadius": 100,
+                                 "backgroundColor": "#4477DD",
                                  "name": "submit",
                                  "marginTop": 20,
                                  "children": [

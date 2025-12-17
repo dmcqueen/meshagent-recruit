@@ -40,6 +40,6 @@ container:
     - name: MESHAGENT_IDENTITY
       value: recruit
     - name: EMAIL_ADDRESS
-      value: ${EMAIL_ADDRESS}
+      value: {EMAIL_ADDRESS}
   image: us-central1-docker.pkg.dev/meshagent-life/meshagent-public/recruit:latest
   command: "python /app/main.py"

@@ -14,7 +14,9 @@ agents:
       meshagent.agent.widget: https://raw.githubusercontent.com/dmcqueen/meshagent-recruit/refs/heads/main/submit-resume.json
 variables:
   - name: EMAIL_ADDRESS
-    description: Mailbox address used as the service sender for acknowledgement email (defaults to dave@mail.meshagent.life if unset).
+    description: Mailbox address used as the service sender for acknowledgement email.
+  - name: MESHAGENT_MAIL_DOMAIN
+    description: Mail domain used for sending acknowledgement emails.
 ports:
   - num: "*"
     type: http

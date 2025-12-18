@@ -81,9 +81,9 @@
                                              }
                                           ],
                                           "spacing": 2,
+                                          "initialTab": "tab1",
                                           "marginRight": null,
-                                          "marginLeft": null,
-                                          "initialTab": "tab1"
+                                          "marginLeft": null
                                        }
                                     },
                                     {
@@ -93,12 +93,12 @@
                                           "backgroundColor": "#EEEEEE",
                                           "bottomLeftRadius": 10,
                                           "bottomRightRadius": 10,
+                                          "paddingLeft": 50,
+                                          "paddingTop": 50,
+                                          "paddingRight": 50,
+                                          "paddingBottom": 50,
                                           "name": "tab1Content",
                                           "script": "\n",
-                                          "paddingLeft": 100,
-                                          "paddingTop": 100,
-                                          "paddingRight": 100,
-                                          "paddingBottom": 100,
                                           "children": [
                                              {
                                                 "input": {
@@ -154,8 +154,8 @@
                                                          "text": {
                                                             "text": "Submit",
                                                             "name": "Submit-Text-1",
-                                                            "color": "#FFFFFF",
-                                                            "script": ""
+                                                            "script": "",
+                                                            "color": "#FFFFFF"
                                                          }
                                                       }
                                                    ]
@@ -214,11 +214,11 @@
                                           ],
                                           "bottomRightRadius": 10,
                                           "bottomLeftRadius": 10,
-                                          "visible": false,
-                                          "paddingLeft": 100,
-                                          "paddingTop": 100,
-                                          "paddingRight": 100,
-                                          "paddingBottom": 100
+                                          "paddingLeft": 50,
+                                          "paddingTop": 50,
+                                          "paddingRight": 50,
+                                          "paddingBottom": 50,
+                                          "visible": false
                                        }
                                     }
                                  ]

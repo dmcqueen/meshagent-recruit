@@ -18,7 +18,7 @@
                                           "height": null,
                                           "width": 500,
                                           "name": "tabs",
-                                          "script": "function widget:onTabChanged(tab)\n  print(\"tabChanged: \"..tab)\n  print(tab..\"Content\")\n  getWidget(\"tab1Content\"):setVisible(false)\n  getWidget(\"tab2Content\"):setVisible(false)\n\n  getWidget(tab..\"Content\"):setVisible(true)\nend",
+                                          "script": "function widget:onTabChanged(tab)\n  print(\"tabChanged: \"..tab)\n  print(tab..\"Content\")\n  getWidget(\"tab1Content\"):setVisible(false)\n  getWidget(\"tab2Content\"):setVisible(false)\ngetWidget(\"tab3Content\"):setVisible(false)\n  getWidget(tab..\"Content\"):setVisible(true)\nend",
                                           "backgroundColor": null,
                                           "paddingLeft": null,
                                           "paddingTop": null,
@@ -77,6 +77,26 @@
                                                    "activeBackgroundColor": "#EEEEEE",
                                                    "topLeftRadius": 10,
                                                    "topRightRadius": 10
+                                                }
+                                             },
+                                             {
+                                                "tab": {
+                                                   "backgroundColor": "#CCCCCC",
+                                                   "activeBackgroundColor": "#EEEEEE",
+                                                   "name": "tab3",
+                                                   "topLeftRadius": 10,
+                                                   "topRightRadius": 10,
+                                                   "paddingLeft": 10,
+                                                   "paddingTop": 10,
+                                                   "paddingRight": 10,
+                                                   "paddingBottom": 10,
+                                                   "children": [
+                                                      {
+                                                         "text": {
+                                                            "text": "Posts"
+                                                         }
+                                                      }
+                                                   ]
                                                 }
                                              }
                                           ],
@@ -219,6 +239,60 @@
                                           "paddingRight": 50,
                                           "paddingBottom": 50,
                                           "visible": false
+                                       }
+                                    },
+                                    {
+                                       "box": {
+                                          "width": 500,
+                                          "height": 500,
+                                          "name": "tab3Content",
+                                          "backgroundColor": "#EEEEEE",
+                                          "visible": false,
+                                          "paddingLeft": 50,
+                                          "paddingTop": 50,
+                                          "paddingRight": 50,
+                                          "paddingBottom": 50,
+                                          "bottomRightRadius": 10,
+                                          "bottomLeftRadius": 10,
+                                          "children": [
+                                             {
+                                                "datagrid": {
+                                                   "name": "jobs",
+                                                   "table": "job_post_submissions",
+                                                   "height": 400,
+                                                   "borderLeftColor": "#000000",
+                                                   "borderTopColor": "#000000",
+                                                   "borderRightColor": "#000000",
+                                                   "borderBottomColor": "#000000",
+                                                   "borderColor": null,
+                                                   "backgroundColor": "#CCCCCC",
+                                                   "topLeftRadius": 10,
+                                                   "topRightRadius": 10,
+                                                   "bottomRightRadius": 10,
+                                                   "bottomLeftRadius": 10,
+                                                   "borderLeft": 1,
+                                                   "borderTop": 1,
+                                                   "borderRight": 1,
+                                                   "borderBottom": 1,
+                                                   "columns": [
+                                                      {
+                                                         "gridcolumn": {
+                                                            "color": "#000000",
+                                                            "name": "job_title",
+                                                            "label": "Job Title"
+                                                         }
+                                                      },
+                                                      {
+                                                         "gridcolumn": {
+                                                            "color": "#000000",
+                                                            "name": "manager_name",
+                                                            "label": "Manager Name"
+                                                         }
+                                                      }
+                                                   ]
+                                                }
+                                             }
+                                          ]
                                        }
                                     }
                                  ]
